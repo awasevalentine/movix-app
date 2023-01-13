@@ -44,13 +44,13 @@ const Register = () => {
 
     }
     return ( 
-        <Flex className="main_wrapper" h="100%" direction="column"
-        justifyContent={{base: 'center', md: 'normal'}} alignItems="center"
+        <Flex className="main_wrapper" h="100vh" direction="column" margin={{base: "0 20px", lg: "none"}}
+        justifyContent={{base: 'center', md: 'center'}} alignItems="center"
         >
-            <Flex className="content_wrapper" direction="column"
-            gap={{base:"17px", md:"24px"}} padding={{base: "10px", md: "48px 28px 36px" }} w={{base: "100%", md:"450px"}}
+            <Box className="content_wrapper" direction="column"
+            gap={{base:"19px", md:"24px"}} padding={{base: "10px", md: "48px 28px 36px" }} w={{base: "100%", md:"450px"}}
             >
-            <Flex className="logo" h={{md: "88px"}} w={{base: "100%", md:"88px"}} justifyContent="center" >
+            <Flex className="logo" h={{md: "88px"}} w={{base: "100%", md:"100%"}} justifyContent="center" >
                 <Image src={require("../../asset/account_creation/auth_logo.png")}
                     alt="Authentication Logo" h={{base: "40px", md:"73.33px"}} w={{base: "40px", md:"73.33px"}}
                 />
@@ -59,7 +59,7 @@ const Register = () => {
                 h={{base: "100%", md: "408px"}}
             >
                 <Flex className="text_header" direction="column" w={{base: "100%", md: "394px"}}
-                h={{base: "50px", md: "66px"}}
+                h={{base: "50px", md: "66px"}} marginTop={{base: "13px", md: "0px"}}
                 >
                     <Heading className="welcome_header" w={{base: "100%", md: "112px"}}
                     h={{base: "13px", md: "23px"}} lineHeight={{base: "17px", md:"23px"}}
@@ -108,7 +108,7 @@ const Register = () => {
                             </InputRightElement>
                         </InputGroup>
                         </FormControl>
-                        <Progress size='xs' marginLeft="13px" marginTop="-30px" isIndeterminate />
+                        {/* <Progress size='xs' marginLeft="13px" marginTop="-30px" isIndeterminate /> */}
                     </Flex>
                     <Flex className="btn_wrapper" direction="column" w={{base: "100%", md:"394px"}} h={{base: "40px", md:"51px"}}>
                         <Button type="submit" class="register_btn" fontSize={{base: "12px", md:"15px"}}
@@ -128,7 +128,7 @@ const Register = () => {
                     </Flex>
                 </Flex>
             </Flex>
-            </Flex>
+            </Box>
         </Flex>
      );
 }
