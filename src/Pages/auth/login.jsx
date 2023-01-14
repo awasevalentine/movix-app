@@ -3,7 +3,7 @@ import "./auth.style.css"
 import { Box, Button, Flex, FormControl, Heading, Image, Input, InputGroup, InputRightElement, Progress, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
+import { auth, firebaseConfig } from "../../firebase/firebaseConfig";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { SET_ACTIVE_USER } from "../../features/auth/authSlice";
@@ -29,11 +29,11 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+       
             dispatch(SET_ACTIVE_USER(user))
             setIsLoading(false);
             toast.success("Login Successful...");
-            // redirectUser();
-            navigate('/sign-up')
+            navigate('/')
         })
         .catch((error) => {
             setIsLoading(false);
@@ -41,7 +41,6 @@ const Login = () => {
         });
 
     }
-
 
     const textChange = (e) => {
         setUSerData((prevData)=> ({

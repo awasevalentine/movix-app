@@ -3,8 +3,10 @@ import "./auth.style.css"
 import { Box, Button, Flex, FormControl, Heading, Image, Input, InputGroup, InputRightElement, Progress, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
+import { auth, db, firebaseConfig } from "../../firebase/firebaseConfig";
 import { toast } from "react-toastify";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 const Register = () => {
     const [userData, setUSerData ] = useState({
@@ -29,14 +31,14 @@ const Register = () => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         setIsLoading(true);
-        console.log("Here is the data: ", userData)
         createUserWithEmailAndPassword(auth, email, password, name)
-          .then((userCredential) => {
-            const user = userCredential.user;
+          .then(async(userCredential) => {
+            const ref = await doc(db, 'users', userCredential.user.uid)
+            const createUser = await setDoc(ref,{FullName:name}).then()
             setIsLoading(false);
             toast.success("Registration Successful...");
             navigate("/sign-in");
-          })
+        })
           .catch((error) => {
             toast.error(error.message);
             setIsLoading(false);
