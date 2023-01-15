@@ -86,16 +86,16 @@ const Login = () => {
                        gap={{base: "10px", md: "16px"}}
                     >
                     <FormControl w={{base: "100%", md: "394px"}} h={{base: "40px", md:"51px"}} padding="0px 12px">
-                        <Input type="email" class="form-control" id="email" placeholder="Email"
+                        <Input type="email" class="form-control" _focusVisible={{outline: "none",}} id="email" placeholder="Email"
                         onChange={(e) => textChange(e)}
                         />
                     </FormControl>
-                    <FormControl w={{base: "100%", md: "394px"}} h={{base: "40px", md:"51px"}} padding="0px 12px">
+                    <FormControl w={{base: "100%", md: "394px"}} h={{base: "40px", md:"51px"}} _focusVisible={{outline: "none",}} padding="0px 12px">
                     <InputGroup style={{display: 'flex', justifyContent: 'center'}}>
                         <Input
                             type={show ? 'text' : 'password'}
                             placeholder='Password' id="password"
-                            onChange={(e) => textChange(e)}
+                            onChange={(e) => textChange(e)} _focusVisible={{outline: "none",}}
                         />
                         <InputRightElement width="20%" >
                             <span h='1.75rem' onClick={handleClick}>

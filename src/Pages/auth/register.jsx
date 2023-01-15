@@ -81,14 +81,14 @@ const Register = () => {
                     <Flex className="form_input_fields" direction="column" w={{base: "100%", md: "394px"}}
                        gap={{base: "10px", md: "16px"}}
                     >
-                        <FormControl w={{base: "100%", md: "394px"}} h={{base: "40px", md:"51px"}} padding="0px 12px">
+                        <FormControl w={{base: "100%", md: "394px"}}  h={{base: "40px", md:"51px"}} padding="0px 12px">
                             <Input type="text" class="form-control" id="name" placeholder="Full Name"
-                            onChange={(e) => textChange(e)}
+                            onChange={(e) => textChange(e)} _focusVisible={{outline: "none",}}
                             />
                         </FormControl>
-                        <FormControl w={{base: "100%", md: "394px"}} h={{base: "40px", md:"51px"}} padding="0px 12px">
+                        <FormControl w={{base: "100%", md: "394px"}}  h={{base: "40px", md:"51px"}} padding="0px 12px">
                             <Input type="email" class="form-control" id="email" placeholder="Email"
-                            onChange={(e) => textChange(e)}
+                            onChange={(e) => textChange(e)} _focusVisible={{outline: "none",}}
                             />
                         </FormControl>
                         <FormControl w={{base: "100%", md: "394px"}} h={{base: "40px", md:"51px"}} padding="0px 12px">
@@ -96,7 +96,7 @@ const Register = () => {
                             <Input
                                 type={show ? 'text' : 'password'}
                                 placeholder='Password' id="password"
-                                onChange={(e) => textChange(e)}
+                                onChange={(e) => textChange(e)} _focusVisible={{outline: "none",}}
                             />
                             <InputRightElement width="20%" >
                                 <span h='1.75rem' onClick={handleClick}>
