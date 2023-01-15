@@ -8,6 +8,7 @@ import { addDoc, collection, doc, documentId, getDoc, getDocs, setDoc } from "fi
 import { useEffect } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import HeaderComponent from "../../Components/navbar/header/header";
+import MoviesCategory from "../../Components/movies/movie.category";
 
 const HomePage = () => {
 
@@ -40,6 +41,7 @@ const HomePage = () => {
     return ( 
         <>
             <HeaderComponent />
+            <MoviesCategory />
         </>
      );
 }

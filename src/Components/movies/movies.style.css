@@ -1,0 +1,29 @@
+
+
+
+
+
+/* Movies section title */
+.section_title{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    color: #000000;
+}
+
+
+.section_see_all{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #BE123C;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+/* End  */
