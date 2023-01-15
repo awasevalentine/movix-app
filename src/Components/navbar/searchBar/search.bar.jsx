@@ -8,16 +8,16 @@ const SearchBar = () => {
     }
     return ( 
         <>
-        <InputGroup w="525px" h="36px" borderRadius="6px"
-        top="22px" left="493px" gap="10px"
+        <InputGroup w={{base:'250px', md:'400px', xl:"525px"}} h={{base:'26px', md:'30px',xl:"36px"}} borderRadius="6px"
+        top="22px" left={{base:'100px', md:'200px', lg:'350px', xl:"493px"}}
         className="search_input_field"
         
         >
         <Input
             type="text"
             // value={value}
-            onChange={handleChange}
-            padding="6px 10px" border="2px solid #D1D5DB"
+            onChange={handleChange} _focusVisible={{outline: "none",}}
+            padding="6px 10px" border="2px solid #D1D5DB" h="36px"
             placeholder="What do you want to watch?"
         />
         <InputRightElement children={<Search2Icon />} />
