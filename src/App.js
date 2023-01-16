@@ -1,3 +1,5 @@
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -6,6 +8,7 @@ import { useSelector } from "react-redux";
 import Register from './Pages/auth/register';
 import Login from './Pages/auth/login';
 import HomePage from './Pages/Layout/home';
+
 // import RoutGuard from './Components/route-guard/route.guard';
 
 
