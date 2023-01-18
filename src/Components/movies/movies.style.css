@@ -29,7 +29,13 @@
 /* End  */
 
 
-/* Section for Movie Image */
+/* Section for Movie Image and Details*/
+.poster_image{
+    background-position: center;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-radius: 0px;
+}
 .movie_img_tv_type{
     font-family: 'DM Sans';
     font-style: normal;
@@ -53,6 +59,59 @@
     order: 0;
     flex-grow: 0;
 }
+
+.movie_date{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    color: #9CA3AF;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.movie_title{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #111827;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.movie_rating_text{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #111827;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+
+/* Exclusive Video Section */
+
+.exclusive_video_title{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #111827;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+/* End of Exclusive videos */
 /* End */
 
 

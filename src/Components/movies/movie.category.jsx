@@ -1,6 +1,8 @@
 import { Box, Flex } from "@chakra-ui/react";
 import SectionTitle from "./title";
 import MovieList from "./movies.list";
+import ExclusiveMovies from "./exclusive-movies";
+import FeaturedCast from "./featured-cast";
 
 const MoviesCategory = () => {
     return ( 
@@ -8,6 +10,8 @@ const MoviesCategory = () => {
             <MovieList />
             <MovieList />
             <MovieList />
+            <ExclusiveMovies />
+            <FeaturedCast />
         </Box>
      );
 }

@@ -1,0 +1,23 @@
+.links_wrapper > .links_item{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #111827;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.copy_right{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    color: #6B7280;
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    }

@@ -8,12 +8,13 @@ const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <MdOutlineArrowForwardIos display="block" color="black" fontWeight="800" {...props} > Next</MdOutlineArrowForwardIos>
       );
 
-export const settings = {
+export const settings =(movie) =>{
+ return {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: movie.lg,
+    slidesToScroll: movie.lg,
     initialSlide: 0,
     prevArrow: <SlickArrowLeft />,
     nextArrow: <SlickArrowRight />,
@@ -21,8 +22,8 @@ export const settings = {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: movie.lg,
+          slidesToScroll: movie.lg,
           infinite: true,
           dots: false
         }
@@ -30,18 +31,19 @@ export const settings = {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToShow: movie.md,
+          slidesToScroll: movie.md,
+          initialSlide: 1
         }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: movie.sm,
           slidesToScroll: 1
         }
       }
     ]
     
   };
+}

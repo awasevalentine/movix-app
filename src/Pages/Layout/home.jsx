@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { redirect, useNavigate } from "react-router-dom";
 import HeaderComponent from "../../Components/navbar/header/header";
 import MoviesCategory from "../../Components/movies/movie.category";
+import Footer from "../../Components/footer/footer";
 
 const HomePage = () => {
 
@@ -42,6 +43,7 @@ const HomePage = () => {
         <>
             <HeaderComponent />
             <MoviesCategory />
+            <Footer />
         </>
      );
 }

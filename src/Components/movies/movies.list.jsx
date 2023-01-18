@@ -1,53 +1,45 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { BiHeart } from "react-icons/bi";
-import Carousel from "react-elastic-carousel";
-import Items from "./items";
 import Slider from "react-slick";
 import { settings } from "../../Config/react-slick";
 import { useEffect, useRef, useState } from "react";
 import SectionTitle from "./title";
+import getMovie from '../../api/urlCall'
 
-
-const images =[
-    require('../../asset/header/background-image/Poster.png'),
-    require('../../asset/account_creation/auth_logo.png'),
-    require('../../asset/header/navbar/Menu.png'),
-    require('../../asset/header/navbar/PngItem_1381056 1.png'),
-    require('../../asset/header/background-image/Poster.png'),
-    require('../../asset/account_creation/auth_logo.png'),
-    require('../../asset/header/navbar/Menu.png'),
-    require('../../asset/header/navbar/PngItem_1381056 1.png')
-]
 const MovieList = ({initialSlide=0}) => {
-    const breakPoints = [
-        { width: 1, itemsToShow: 1 },
-        { width: 550, itemsToShow: 2 },
-        { width: 768, itemsToShow: 3 },
-        { width: 1200, itemsToShow: 4 },
-        { width: 1500, itemsToShow: 5 },
-      ];
     const [hasSetPosition, setHasSetPosition] = useState(false);
     const slider = useRef();
-
+    const [movies, setMovies ] = useState([])
     
     useEffect(() => {
         if (slider.current && !hasSetPosition) {
           slider.current.slickGoTo(initialSlide);
           setHasSetPosition(true);
         }
+        const fetchMovies = async()=>{
+            const {data} = await getMovie.get("tv/popular")
+            if(data.results){
+                setMovies(data.results)
+            }
+        }
+    
+        fetchMovies()
+        console.log("Inside another: ", movies)
       }, [initialSlide, hasSetPosition, slider]);
+
     return ( 
         <>
         <SectionTitle title="featured"/>
         <Box  marginTop="44px" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}} w="100%">
-        <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 220px)"}}>
-            <Slider {...settings}>
+        <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 230px)"}}>
+            <Slider {...settings({sm: 1, md: 2, lg: 4})}>
             {
-                images.map((res)=>{
+        movies.map((res)=>{
         return (
                 <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="490px" w="250px" padding="0px" alignItems="flex-start">
                     {/* Start of image poster and it rating  */}
-                    <Box style={getImages(res)}  className="poster_image" h="370px" w="250px">
+                    <Box   style={{background: `linear-gradient(to right, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01)), 
+                    url(${process.env.REACT_APP_IMG_URL}${res.poster_path})`,}} className="poster_image" h="370px" w="250px">
                         <Flex className="poster_rating" direction="row" justifyContent="center"  w="100%">
                             <Flex boxSizing="border-box" justifyContent="space-between" marginTop="15.58px" pos="absolute" w={{base: "calc(250px - 20px)", md:"calc(250px - 27px)", lg:"calc(250px - 32px)"}}>
                                 <Flex className="tv_series_wrapper" gap="10px" padding="3px 8px" h="22px" background="rgba(243, 244, 246, 0.5)"
@@ -63,6 +55,22 @@ const MovieList = ({initialSlide=0}) => {
                         </Flex>
                     </Box>
                     {/* End of image rating*/}
+                    {/* Section for Movie Details */}
+                    <Text marginTop="12px" className="movie_date">{res.first_air_date ? res.first_air_date : "No date"}</Text>
+                    <Text marginTop="12px" className="movie_title">{res.name}</Text>
+                    <Flex direction="row" padding="0px" gap="32px" justifyContent="space-between" w="250px" h="17px" flex="none" row="3" flexGrow="0">
+                    
+                    <Flex direction="row" className="idbm_wrapper" padding="0px" gap="10px" h="17px">
+                        <Image src={require('../../asset/header/navbar/idbm.png')} w="35px" h="17px" />
+                    <Text className="movie_rating_text">{res.vote_average.toFixed(1)}/100</Text>
+                    </Flex>
+                    <Flex direction="row" alignItems="center" padding="0px" gap="10px" h="17px" className="rotten_tomatos_wrpaper">
+                        <Image src={require('../../asset/header/navbar/tomatos.png')} w="16px" h="17px" />
+                        <Text className="movie_rating_text">
+                            {res.vote_average.toFixed(0)}%
+                        </Text>
+                    </Flex>
+                    </Flex>
                 </Flex>
         )})}
             </Slider>
@@ -74,14 +82,3 @@ const MovieList = ({initialSlide=0}) => {
 }
  
 export default MovieList;
-
-const getImages =(img) =>{
-    return {
-        borderRadius: '0px',
-        background: `linear-gradient(to right, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01)), 
-                    url(${img})`,
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-    }
-}
