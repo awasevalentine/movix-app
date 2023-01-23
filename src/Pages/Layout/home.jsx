@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Text,Box } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUserID } from "../../features/auth/authSlice";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -40,11 +40,11 @@ const HomePage = () => {
 
     // })
     return ( 
-        <>
+        <Box overflow="hidden">
             <HeaderComponent />
             <MoviesCategory />
             <Footer />
-        </>
+        </Box>
      );
 }
  
