@@ -4,9 +4,12 @@ import Slider from "react-slick";
 import { settings } from "../../Config/react-slick";
 import { useEffect, useRef, useState } from "react";
 import SectionTitle from "./title";
-// import { DefaultPlayer as Video } from "react-html5video/";
-// import "react-html5video/dist/styles.css"
-import me from '../../asset/header/navbar/CRUD with React Redux Toolkit with Firebase _ Introduction #1.mp4'
+import {Player, BigPlayButton} from 'video-react'
+import Youtube from 'react-youtube-player';
+import getMovie from '../../api/urlCall'
+
+// import me from '../../asset/header/navbar/movie.mp4'
+import { async } from "@firebase/util";
 
 
 const images =[
@@ -19,7 +22,10 @@ const images =[
     require('../../asset/header/navbar/Menu.png'),
     require('../../asset/header/navbar/tomatos.png')
 ]
-const ExclusiveMovies = ({initialSlide=0}) => {
+const ExclusiveMovies = ({initialSlide=0, params}) => {
+    const [trailer, setTrailer] = useState([])
+    const [movies, setMovies ] = useState([])
+    // const videoSrc = me;
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 2 },
@@ -32,11 +38,53 @@ const ExclusiveMovies = ({initialSlide=0}) => {
 
     
     useEffect(() => {
+        const fetchMovies = async()=>{
+        const {data} = await getMovie.get("movie/latest")
+        console.log("wetine: ", data)
+
+        if(data){
+        // console.log("wetine: " )
+
+            // data.forEach((res)=>{
+            //     if(res.genres[0]){
+            //         getMovieData(res.genres[0])
+            //     }
+            // })
+            // setMovies(data.results)
+        }
+        }
+
+        fetchMovies()
+        console.log("the single: ", trailer)
+
         if (slider.current && !hasSetPosition) {
           slider.current.slickGoTo(initialSlide);
           setHasSetPosition(true);
         }
-      }, [initialSlide, hasSetPosition, slider]);
+      }, [trailer,initialSlide, hasSetPosition, slider]);
+
+      const getMovieData = async(id)=>{
+        const {data} = await getMovie.get("movie/"+id)
+        const result = data.results
+        console.log("where is theis")
+
+        if (result.videos && result.videos.results) {
+            return result.videos.results.find(vid => {
+                if(vid.official === true){
+                    const data = {
+                        key: result.videos.results[0].key,
+                        name: result.videos.results[0].name
+                    }
+                    setTrailer((prevData)=> ({
+                        ...prevData,
+                        data
+                }))
+            // setTrailer(trailer ? trailer : data.videos.results[0])
+                }
+        })
+        // return data.results
+      }
+
     return ( 
         <>
         <SectionTitle title="Exclusive Videos"/>
@@ -44,19 +92,43 @@ const ExclusiveMovies = ({initialSlide=0}) => {
         <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 230px)"}}>
             <Slider {...settings({sm:1, md:1, lg: 2})}>
             {
-                images.map((res)=>{
+                trailer.map((res)=>{
         return (
                 <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="288.12px;" w="450px" padding="0px" alignItems="flex-start">
                     {/* Start of Video display  */}
-                    <Box style={getImages(res)}  className="video_player_wrapper" h="253.12px" w="450px">
+                    <Box className="video_player_wrapper" h="253.12px" w="450px">
                         <Flex className="poster_rating" direction="row" justifyContent="center"  w="100%">
-                            {/* <Video>
-                                <source src={require("../../asset/header/navbar/CRUD with React Redux Toolkit with Firebase _ Introduction #1.mp4")} type="video/mp4"  />
-                            </Video> */}
-                            <video width="450" height="253.12" controls loop autoplay='m' muted>
-                            <source src={me} type="video/mp4"/>
-                            {/* <source src="movie.ogg" type="video/ogg" /> */}
-                            </video>
+                         {
+                            res.genres[0] ? (
+                            //     <Player>
+                            //     <source src={} />
+                            //     <BigPlayButton position="center" />
+                            //  </Player>
+                            <Youtube
+                                videoId={getMovie(res.genres[0])}
+                                className={"youtube amru"}
+                                containerClassName={"youtube-container amru"}
+                                opts={
+                                    {
+                                        width: '100%',
+                                        height: '100%',
+                                        playerVars: {
+                                            autoplay: 1,
+                                            controls: 0,
+                                            cc_load_policy: 0,
+                                            fs: 0,
+                                            iv_load_policy: 0,
+                                            modestbranding: 0,
+                                            rel: 0,
+                                            showinfo: 0,
+                                        },
+                                    }
+                                }
+                            />
+                            ):(
+                                <></>
+                            )
+                         }
                         </Flex>
                     </Box>
                     <Text className="exclusive_video_title" marginTop="12px">John Cena</Text>
@@ -69,7 +141,7 @@ const ExclusiveMovies = ({initialSlide=0}) => {
         </>
 
      );
-}
+}}
  
 export default ExclusiveMovies;
 

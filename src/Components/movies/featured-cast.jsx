@@ -16,14 +16,7 @@ const images =[
     require('../../asset/header/navbar/Menu.png'),
     require('../../asset/header/navbar/tomatos.png')
 ]
-const FeaturedCast = ({initialSlide=0}) => {
-    const breakPoints = [
-        { width: 1, itemsToShow: 1 },
-        { width: 550, itemsToShow: 2 },
-        { width: 768, itemsToShow: 3 },
-        { width: 1200, itemsToShow: 4 },
-        { width: 1500, itemsToShow: 5 },
-      ];
+const FeaturedCast = ({initialSlide=0, params}) => {
     const [hasSetPosition, setHasSetPosition] = useState(false);
     const slider = useRef();
 
@@ -41,16 +34,16 @@ const FeaturedCast = ({initialSlide=0}) => {
         <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 230px)"}}>
             <Slider {...settings({sm:1, md:2, lg: 4})}>
             {
-                images.map((res)=>{
+                params.map((res)=>{
         return (
                 <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="405px;" w="250px" padding="0px" alignItems="flex-start">
                     {/* Start of Video display  */}
-                    <Box  style={getImages(res)}  className="video_player_wrapper" h="370px" w="250px">
+                    <Box  className="video_player_wrapper" h="370px" w="250px">
                         <Flex className="poster_rating" direction="row" justifyContent="center"  w="100%">
-                            {/* <Image src={res} alt="None" h="370px" w="250px" /> */}
+                            <Image src={process.env.REACT_APP_IMG_URL+res.profile_path} alt="None" h="370px" w="250px" />
                         </Flex>
                     </Box>
-                    <Text className="exclusive_video_title" marginTop="12px">John Cena</Text>
+                    <Text className="exclusive_video_title" marginTop="12px">{res.name}</Text>
                     {/* End of Exclusive videos*/}
                     </Flex>
         )})}

@@ -1,45 +1,36 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { BiHeart } from "react-icons/bi";
 import Slider from "react-slick";
 import { settings } from "../../Config/react-slick";
 import { useEffect, useRef, useState } from "react";
 import SectionTitle from "./title";
-import getMovie from '../../api/urlCall'
 
-const MovieList = ({initialSlide=0}) => {
+const MovieList = ({initialSlide=0, params, title}) => {
+    console.log("here is the image: ", params)
+
     const [hasSetPosition, setHasSetPosition] = useState(false);
     const slider = useRef();
-    const [movies, setMovies ] = useState([])
     
     useEffect(() => {
         if (slider.current && !hasSetPosition) {
           slider.current.slickGoTo(initialSlide);
           setHasSetPosition(true);
         }
-        const fetchMovies = async()=>{
-            const {data} = await getMovie.get("tv/popular")
-            if(data.results){
-                setMovies(data.results)
-            }
-        }
-    
-        fetchMovies()
-        console.log("Inside another: ", movies)
       }, [initialSlide, hasSetPosition, slider]);
 
     return ( 
         <>
-        <SectionTitle title="featured"/>
+        <SectionTitle title={title}/>
         <Box  marginTop="44px" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}} w="100%">
         <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 230px)"}}>
-            <Slider {...settings({sm: 1, md: 2, lg: 4})}>
+            <Slider {...settings({sm: 1, md: 2, lg: 3, xl:4})}>
             {
-        movies.map((res)=>{
+        params.map((res)=>{
         return (
-                <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="490px" w="250px" padding="0px" alignItems="flex-start">
+                <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="490px" w={{base: '100%', md:"250px"}} padding="0px" alignItems="flex-start">
                     {/* Start of image poster and it rating  */}
-                    <Box   style={{background: `linear-gradient(to right, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01)), 
-                    url(${process.env.REACT_APP_IMG_URL}${res.poster_path})`,}} className="poster_image" h="370px" w="250px">
+                    <SimpleGrid columns={{sm: 1, md:5}}  style={{background: `linear-gradient(to right, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01)), 
+                    url(${process.env.REACT_APP_IMG_URL}${res.poster_path})`,}} className="poster_image" h="370px" w={{base: '100%', md:"250px"}}>
                         <Flex className="poster_rating" direction="row" justifyContent="center"  w="100%">
                             <Flex boxSizing="border-box" justifyContent="space-between" marginTop="15.58px" pos="absolute" w={{base: "calc(250px - 20px)", md:"calc(250px - 27px)", lg:"calc(250px - 32px)"}}>
                                 <Flex className="tv_series_wrapper" gap="10px" padding="3px 8px" h="22px" background="rgba(243, 244, 246, 0.5)"
@@ -53,7 +44,7 @@ const MovieList = ({initialSlide=0}) => {
                                 </Flex>
                             </Flex>
                         </Flex>
-                    </Box>
+                    </SimpleGrid>
                     {/* End of image rating*/}
                     {/* Section for Movie Details */}
                     <Text marginTop="12px" className="movie_date">{res.first_air_date ? res.first_air_date : "No date"}</Text>
