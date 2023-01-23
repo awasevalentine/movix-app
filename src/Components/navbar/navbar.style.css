@@ -9,3 +9,10 @@
     order: 1;
     flex-grow: 0;
 }
+
+.show{
+    display:flex !important;
+}
+.searchBtn{
+    display: none;
+}
