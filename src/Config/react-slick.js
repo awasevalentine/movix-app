@@ -20,6 +20,15 @@ export const settings =(movie) =>{
     nextArrow: <SlickArrowRight />,
     responsive: [
       {
+        breakpoint: 1366,
+        settings: {
+          slidesToShow: movie.xl,
+          slidesToScroll: movie.xl,
+          infinite: true,
+          dots: false
+        }
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: movie.lg,
@@ -29,7 +38,7 @@ export const settings =(movie) =>{
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 991,
         settings: {
           slidesToShow: movie.md,
           slidesToScroll: movie.md,
@@ -37,7 +46,7 @@ export const settings =(movie) =>{
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 576,
         settings: {
           slidesToShow: movie.sm,
           slidesToScroll: 1
