@@ -23,8 +23,8 @@ const NavBarMenu = () => {
     },[])
 
     return ( 
-        <Flex direction="row" alignItems="center" padding="0px" gap={{base:'10px', md:'18px', lg:"27px"}}
-        h={{base:'26px', md:'30px', lg:"36px"}} w={{base:'100',md:'130px', xl:"166px"}} marginTop="22px" marginRight={{base:'10px',sm:'14px',md:'25px', lg:"58px"}}
+        <Flex direction="row" alignItems="center" gap={{base:'10px', md:'18px', lg:"27px"}}
+        h={{base:'26px', md:'30px', lg:"36px"}} w={{base:'100%',md:'130px', xl:"166px"}}
         >
             <Text className="username" display={{base: 'none', md:'flex'}}
             >{userName}</Text>

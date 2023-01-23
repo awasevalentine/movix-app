@@ -13,26 +13,31 @@ const HeaderComponent = () => {
 
    useEffect(()=>{
     const fetchMovies = async()=>{
-        const {data} = await getMovie.get("search/movie?&query=john wick 3")
+        const {data} = await getMovie.get("search/movie?&query=john wick 3&append_to_response=videos")
         if(data.results){
             setMovies(data.results[0])
         }
     }
 
+    // const {data} = await axios.get(`${MOVIE_API}movie/${id}`, {
+    //     params: {
+    //         api_key: API_KEY,
+    //         append_to_response: "videos"
+    //     }
+    // })
+
     fetchMovies()
-    console.log("FIrst: ", movies)
+    // console.log("FIrst: ", movies)
     },[movies])
 
 
     return ( 
-        <Flex  className="header_wrapper"  position="relative" w="100%" h="100vh"
-        style={{
-            borderRadius: '0px',
-            background: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        <Box  className="header_wrapper"  position="relative" w="100%" h="100vh"
+        style={{borderRadius: '0px',background: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                         url(${process.env.REACT_APP_IMG_URL}${movies.backdrop_path})`,
-        }}
-        >
-            <NavBar />
+        }}>
+        <Box pos="absolute" w="100%" h="100%" boxSizing="border-box">
+            <Box position="fixed" zIndex="1"><NavBar/></Box>
             <Box w={{base:'100%', md:'270px', lg:'404px'}} h="285px" pos="absolute" 
             left={{base:'20px', md:'40px', lg:'98px'}} top={{base:'128px',md:'138px', lg:'158px'}}
             >
@@ -48,7 +53,8 @@ const HeaderComponent = () => {
                 </Button>
                 </Stack>
             </Box>
-        </Flex>
+        </Box>
+        </Box>
      );
 }
  
