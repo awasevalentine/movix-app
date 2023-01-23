@@ -37,15 +37,17 @@ const HeaderComponent = () => {
                         url(${process.env.REACT_APP_IMG_URL}${movies.backdrop_path})`,
         }}>
         <Box pos="absolute" w="100%" h="100%" boxSizing="border-box">
-            <Box position="fixed" zIndex="1"><NavBar/></Box>
-            <Box w={{base:'100%', md:'270px', lg:'404px'}} h="285px" pos="absolute" 
+            <Box position="fixed" zIndex="1">
+                <NavBar/>
+            </Box>
+            <Box  w={{base:'100%', md:'270px', lg:'404px'}} h="285px" pos="absolute" 
             left={{base:'20px', md:'40px', lg:'98px'}} top={{base:'128px',md:'138px', lg:'158px'}}
             >
                 <Heading className="header1">{movies.title}</Heading>
                 <Rating rating={movies.vote_average}/>
                 <Description text={movies.overview} />
                 <Stack direction='row' marginTop="22px">
-                <Button className="trailer_btn" leftIcon={<IoPlayCircleOutline  w="20px" h="20px" />} 
+                <Button className="trailer_btn"  leftIcon={<IoPlayCircleOutline  w={{base:'15px', md:"20px"}} h={{base:'15px', md:"20px"}} />} 
                 bgColor='#BE123C' variant='solid' padding="6px 16px" gap="3px" order="3" flex="none"
                 flex-grow="0" borderRadius="6px"
                 >

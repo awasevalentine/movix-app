@@ -15,14 +15,14 @@ const MoviesCategory = () => {
 
     useEffect(() => {
         const fetchMovies = async()=>{
-            const {data: featuredMoviesData} = await getMovie.get("tv/popular")
-            const {data: newArrivalData} = await getMovie.get("movie/latest")
+            const {data: trendingMoviesData} = await getMovie.get("trending/all/day")
+            const {data: newArrivalData} = await getMovie.get("tv/popular")
             const {data: exclusiveData} = await getMovie.get("tv/popular")
             const {data: exclusiveData2} = await getMovie.get("movie/18")
             const {data: featuredCastData} = await getMovie.get("person/popular")
-            console.log("Cheheh: ",exclusiveData2 )
-            if(featuredMoviesData.results){
-                setFeaturedMovies(featuredMoviesData.results)
+            console.log("Cheheh ooooooo: ",trendingMoviesData )
+            if(trendingMoviesData.results){
+                setFeaturedMovies(trendingMoviesData.results)
             }
             if(newArrivalData.results){
                 setNewArrivalMovies(newArrivalData.results)
@@ -41,9 +41,9 @@ const MoviesCategory = () => {
     return ( 
         <Box w="100%">
             {/*This is for Featured movies section */}
-            <MovieList params={featuredMovies} title="Featured Movie" /> 
+            <MovieList params={featuredMovies} title="Trending" /> 
             {/* This is for New Arrival Section */}
-            <MovieList params={newArrivalMovies} title="New Arrival" /> 
+            <MovieList params={newArrivalMovies} title="Popular Movies" /> 
             {/* This for Exclusive Videos */}
             <ExclusiveMovies params={exclusiveVideos} title="Exclusive Videos" />
             {/* This is for featured cast */}

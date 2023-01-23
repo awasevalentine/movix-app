@@ -34,9 +34,9 @@ const FeaturedCast = ({initialSlide=0, params}) => {
         <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 230px)"}}>
             <Slider {...settings({sm:1, md:2, lg: 4})}>
             {
-                params.map((res)=>{
+                params.map((res, keys)=>{
         return (
-                <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="405px;" w="250px" padding="0px" alignItems="flex-start">
+                <Flex key={keys} className="Movie_content_wrapper" direction="column" gap="12px" h="405px;" w="250px" padding="0px" alignItems="flex-start">
                     {/* Start of Video display  */}
                     <Box  className="video_player_wrapper" h="370px" w="250px">
                         <Flex className="poster_rating" direction="row" justifyContent="center"  w="100%">

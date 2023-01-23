@@ -23,16 +23,10 @@ const images =[
     require('../../asset/header/navbar/tomatos.png')
 ]
 const ExclusiveMovies = ({initialSlide=0, params}) => {
+    console.log("I got here: ", params)
     const [trailer, setTrailer] = useState([])
     const [movies, setMovies ] = useState([])
     // const videoSrc = me;
-    const breakPoints = [
-        { width: 1, itemsToShow: 1 },
-        { width: 550, itemsToShow: 2 },
-        { width: 768, itemsToShow: 3 },
-        { width: 1200, itemsToShow: 4 },
-        { width: 1500, itemsToShow: 5 },
-      ];
     const [hasSetPosition, setHasSetPosition] = useState(false);
     const slider = useRef();
 
@@ -63,27 +57,27 @@ const ExclusiveMovies = ({initialSlide=0, params}) => {
         }
       }, [trailer,initialSlide, hasSetPosition, slider]);
 
-      const getMovieData = async(id)=>{
-        const {data} = await getMovie.get("movie/"+id)
-        const result = data.results
-        console.log("where is theis")
+    //   const getMovieData = async(id)=>{
+    //     const {data} = await getMovie.get("movie/"+id)
+    //     const result = data.results
+    //     console.log("where is theis")
 
-        if (result.videos && result.videos.results) {
-            return result.videos.results.find(vid => {
-                if(vid.official === true){
-                    const data = {
-                        key: result.videos.results[0].key,
-                        name: result.videos.results[0].name
-                    }
-                    setTrailer((prevData)=> ({
-                        ...prevData,
-                        data
-                }))
-            // setTrailer(trailer ? trailer : data.videos.results[0])
-                }
-        })
-        // return data.results
-      }
+    //     if (result.videos && result.videos.results) {
+    //         return result.videos.results.find(vid => {
+    //             if(vid.official === true){
+    //                 const data = {
+    //                     key: result.videos.results[0].key,
+    //                     name: result.videos.results[0].name
+    //                 }
+    //                 setTrailer((prevData)=> ({
+    //                     ...prevData,
+    //                     data
+    //             }))
+    //         // setTrailer(trailer ? trailer : data.videos.results[0])
+    //             }
+    //     })
+    //     // return data.results
+    //   }
 
     return ( 
         <>
@@ -92,9 +86,9 @@ const ExclusiveMovies = ({initialSlide=0, params}) => {
         <Box w={{base: "calc(100% - 40px)", md:"calc(100% - 70px)", lg:"calc(100% - 230px)"}}>
             <Slider {...settings({sm:1, md:1, lg: 2})}>
             {
-                trailer.map((res)=>{
+                trailer.map((res, keys)=>{
         return (
-                <Flex  className="Movie_content_wrapper" direction="column" gap="12px" h="288.12px;" w="450px" padding="0px" alignItems="flex-start">
+                <Flex key={keys} className="Movie_content_wrapper" direction="column" gap="12px" h="288.12px;" w="450px" padding="0px" alignItems="flex-start">
                     {/* Start of Video display  */}
                     <Box className="video_player_wrapper" h="253.12px" w="450px">
                         <Flex className="poster_rating" direction="row" justifyContent="center"  w="100%">
@@ -141,7 +135,7 @@ const ExclusiveMovies = ({initialSlide=0, params}) => {
         </>
 
      );
-}}
+}
  
 export default ExclusiveMovies;
 

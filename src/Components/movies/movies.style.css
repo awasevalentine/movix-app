@@ -8,7 +8,6 @@
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
     color: #000000;
 }
 
@@ -119,7 +118,17 @@
 /* Overiding React Slicker Carousel class */
 
 .slick-prev {
-    left: -50px;
+    left: -45px;
+}
+.slick-next {
+    right: -45px;
+}
+
+.slick-list {margin: 0 -5px;}
+.slick-slide>div {padding: 0 10px;}
+.css-ils60y, .css-w3zirn {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    width: 100%;
 }
 /* End */
 

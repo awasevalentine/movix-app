@@ -41,6 +41,7 @@ export const settings =(movie) =>{
         breakpoint: 991,
         settings: {
           slidesToShow: movie.md,
+          arrows: false,
           slidesToScroll: movie.md,
           initialSlide: 1
         }
@@ -49,6 +50,7 @@ export const settings =(movie) =>{
         breakpoint: 576,
         settings: {
           slidesToShow: movie.sm,
+          arrows: false,
           slidesToScroll: 1
         }
       }
